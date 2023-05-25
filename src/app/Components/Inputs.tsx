@@ -7,7 +7,9 @@ import {
   getName,
   getAge,
   getExperiences,
-  getEducation
+  getEducation,
+  getContacts,
+  getSkills
 } from "../features/userSlice";
 import { current } from "@reduxjs/toolkit";
 
@@ -41,6 +43,21 @@ const Inputs = () => {
     major: ''
   });
 
+  //Contacts
+  
+  interface Contacts {
+    phone?: Number,
+    address?: String,
+    email?: String
+  }
+  const [contacts, setContacts] = useState<Contacts>({
+    email: '',
+    phone: undefined,
+    address: ''
+  })
+
+  //Skills
+  const [skills, setSkills] = useState('')
   return (
     <div>
       <Input
@@ -154,6 +171,49 @@ const Inputs = () => {
             })
           }}>Submit!</Button>
         </FormGroup>
+        <FormGroup>
+          <Input
+          placeholder="Email address"
+          value={contacts.email}
+          type="text"
+          onChange={(e)=>{
+            setContacts((current)=>({
+              ...current,
+              email: e.target.value,
+            }))
+          }}/>
+          <Input
+          placeholder="Address"
+          value={contacts.address}
+          type="text"
+          onChange={(e)=>{
+            setContacts((current)=>({
+              ...current,
+              address: e.target.value,
+            }))
+          }}/>
+          <Input
+          placeholder="Phone number"
+          value={contacts.phone}
+          type="num"
+          onChange={(e)=>{
+            setContacts((current)=>({
+              ...current,
+              phone: Number(e.target.value),
+            }))
+          }}/>
+          <Button onClick={()=>{
+            dispatch(getContacts(contacts))
+          }}>Submit!</Button>
+        </FormGroup>
+        <Input placeholder="Skills"
+        value={skills}
+        onChange={(e)=>setSkills(e.target.value)}/>
+        <Button onClick={()=>{
+          dispatch(getSkills(skills));
+          setSkills('')
+        }}>Submit!</Button>
+
     </div>
   );
 };

@@ -16,8 +16,9 @@ export interface User {
   contacts: {
     phone?: Number,
     address?: String,
-    email?: String
+    email?: String,
   }
+  skills: Array<String>,
 }
 const initialState: User = {
   name: '',
@@ -28,7 +29,8 @@ const initialState: User = {
     phone: undefined,
     address: undefined,
     email: undefined
-  }
+  },
+  skills: [],
 }
 
 export const userSlice = createSlice({
@@ -47,9 +49,14 @@ export const userSlice = createSlice({
     getEducation: (state, action)=>{
       state.education.push(action.payload);
     },
-    
+    getContacts: (state, action)=>{
+      state.contacts = action.payload;
+    },
+    getSkills: (state, action)=>{
+      state.skills.push(action.payload)
+    }
   },
 });
 
-export const { getName, getAge, getExperiences, getEducation} = userSlice.actions;
+export const { getName, getAge, getExperiences, getEducation, getContacts, getSkills} = userSlice.actions;
 export default userSlice.reducer;
