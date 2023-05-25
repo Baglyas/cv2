@@ -43,9 +43,13 @@ export const userSlice = createSlice({
     },
     getExperiences: (state, action)=>{
       state.experiences.push(action.payload);
-    }
+    },
+    getEducation: (state, action)=>{
+      state.education.push(action.payload);
+    },
+    
   },
 });
 
-export const { getName, getAge, getExperiences} = userSlice.actions;
+export const { getName, getAge, getExperiences, getEducation} = userSlice.actions;
 export default userSlice.reducer;
