@@ -17,7 +17,8 @@ export interface User {
     phone?: Number,
     address?: String,
     email?: String,
-  }
+    website?: String,
+  },
   skills: Array<String>,
 }
 const initialState: User = {
@@ -28,7 +29,8 @@ const initialState: User = {
   contacts: {
     phone: undefined,
     address: undefined,
-    email: undefined
+    email: undefined,
+    website: undefined,
   },
   skills: [],
 }

@@ -48,12 +48,14 @@ const Inputs = () => {
   interface Contacts {
     phone?: Number,
     address?: String,
-    email?: String
+    email?: String,
+    website?: String,
   }
   const [contacts, setContacts] = useState<Contacts>({
     email: '',
     phone: undefined,
-    address: ''
+    address: '',
+    website: '',
   })
 
   //Skills
@@ -200,6 +202,16 @@ const Inputs = () => {
             setContacts((current)=>({
               ...current,
               phone: Number(e.target.value),
+            }))
+          }}/>
+          <Input
+          placeholder="Website"
+          value={contacts.website}
+          type="text"
+          onChange={(e)=>{
+            setContacts((current)=>({
+              ...current,
+              website: String(e.target.value),
             }))
           }}/>
           <Button onClick={()=>{
