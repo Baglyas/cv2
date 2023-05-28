@@ -11,21 +11,29 @@ import {
   ListItemText,
   Typography,
 } from "@mui/material";
-import { FiberManualRecord } from "@mui/icons-material";
+import { userSlice, User } from "../features/userSlice";
+import { useDispatch, useSelector } from "react-redux";
 const Skills = () => {
+  const user: User = useSelector((state: { user: User }) => state.user);
+  const dispatch = useDispatch();
   return (
-    <Card sx={{ backgroundColor: "lightblue", height: "100%" }}>
+    <Card sx={{ backgroundColor: "#FFFFFF", height: "100%" }}>
       <CardContent>
         <Typography variant="h5">Skills</Typography>
         <Divider></Divider>
         <List>
           <Grid container columns={3}>
-            <Grid item xs={1}>
-              <ListItem>
-                <ListItemText>• Javascript</ListItemText>
-              </ListItem>
-            </Grid>
-            
+            {user.skills.map((skill) => {
+              return (
+                <div key={skill.id}>
+                  <Grid item xs={1}>
+                    <ListItem>
+                      <ListItemText>•{skill}</ListItemText>
+                    </ListItem>
+                  </Grid>
+                </div>
+              );
+            })}
           </Grid>
         </List>
       </CardContent>

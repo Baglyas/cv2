@@ -13,7 +13,7 @@ export default function Home() {
   return (
     <main>
       <Container>
-        <Box sx={{ bgcolor: "snow", height: "29.7cm", // Approximately 11.69 inches (A4 height)
+        <Box sx={{ backgroundColor: '#F2F2F2' ,height: "29.7cm", // Approximately 11.69 inches (A4 height)
             width: "21cm", // Approximately 8.27 inches (A4 width)
             padding: 8,
             margin: "auto",}}>

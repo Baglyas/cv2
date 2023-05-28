@@ -5,7 +5,7 @@ export interface User {
   education: Array<{
     start: Number,
     finish: Number,
-    schoolName: String,
+    schoolName?: String,
     major?: String
   }>,
   experiences: Array<{

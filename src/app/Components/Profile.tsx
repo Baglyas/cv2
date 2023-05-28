@@ -9,20 +9,21 @@ const Profile = () => {
   return (
     <>
       <Card
-        sx={{ backgroundColor: "lightblue", height: '100%' }}>
+
+        sx={{backgroundColor: '#3898D4',  height: '100%', color: '#F2F2F2', textAlign: 'right' }}>
         <CardContent>
           <Typography variant="h5">Profile</Typography>
           <Box sx={{ bgcolor: "#cfe8fc", height: 8 }}></Box>
-          <Typography sx={{ paddingY: 1 }}>NAME</Typography>
+          <Typography fontWeight={900} sx={{ paddingY: 1 }}>NAME</Typography>
           <Typography variant="body1">{user.name}</Typography>
           <Divider />
-          <Typography sx={{ paddingY: 1 }}>AGE</Typography>
+          <Typography fontWeight={900}  sx={{ paddingY: 1 }}>AGE</Typography>
           <Typography variant="body2">{String(user.age)}</Typography>
           <Divider />
           {Object.entries(contacts).map(([key, value]) => {
             return (
               <div key={key}>
-                <Typography sx={{ paddingY: 1 }} variant="body1">
+                <Typography fontWeight={900}  sx={{ paddingY: 1 }} variant="body1">
                   {key.toUpperCase()}
                 </Typography>
                 <Typography variant="body2">{String(value)}</Typography>
@@ -31,7 +32,7 @@ const Profile = () => {
             );
           })}
         </CardContent>
-        ;
+        
       </Card>
     </>
   );

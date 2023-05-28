@@ -31,8 +31,8 @@ const Inputs = () => {
 
   // Education
   interface Education {
-    start: Number;
-    finish: Number;
+    start?: Number;
+    finish?: Number;
     schoolName: String;
     major?: String;
   }

@@ -7,6 +7,7 @@ import theme from './theme'
 export function Providers({ children }: { children: React.ReactNode }) {
   return <Provider store={store}>
     <ThemeProvider theme={theme}>
+      <CssBaseline enableColorScheme/>
     {children}
     </ThemeProvider>
     </Provider>;
