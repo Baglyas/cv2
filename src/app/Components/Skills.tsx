@@ -17,7 +17,7 @@ const Skills = () => {
   const user: User = useSelector((state: { user: User }) => state.user);
   const dispatch = useDispatch();
   return (
-    <Card sx={{ backgroundColor: "#FFFFFF", height: "100%" }}>
+    <Card sx={{ height: "100%" }}>
       <CardContent>
         <Typography variant="h5">Skills</Typography>
         <Divider></Divider>

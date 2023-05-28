@@ -109,6 +109,7 @@ const Inputs = () => {
           }}
         />
         <Button
+        variant="contained"
           onClick={(e) => {
             dispatch(getExperiences(experiences));
             //default values

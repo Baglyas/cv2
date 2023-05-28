@@ -9,8 +9,7 @@ const Profile = () => {
   return (
     <>
       <Card
-
-        sx={{backgroundColor: '#3898D4',  height: '100%', color: '#F2F2F2', textAlign: 'right' }}>
+        sx={{  height: '100%', color: '#F2F2F2', textAlign: 'right' }}>
         <CardContent>
           <Typography variant="h5">Profile</Typography>
           <Box sx={{ bgcolor: "#cfe8fc", height: 8 }}></Box>
