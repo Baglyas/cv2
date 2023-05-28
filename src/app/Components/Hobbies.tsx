@@ -1,8 +1,8 @@
 import React from 'react'
-
+import { Box, Card } from '@mui/material'
 const Hobbies = () => {
   return (
-    <div>Hobbies</div>
+    <Card sx={{ backgroundColor: "lightblue", height: '100%' }}>Hobbies</Card>
   )
 }
 

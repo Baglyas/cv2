@@ -1,15 +1,7 @@
 import React from "react";
-import { Box, Typography } from "@mui/material";
+import { Box, Card, Typography } from "@mui/material";
 const Picture = () => {
-  return (
-    <Box
-      sx={{
-        width: 300,
-        height: 175,
-        backgroundColor: "primary.dark",
-      }}>
-      </Box>
-  );
+  return <Card sx={{ backgroundColor: "lightblue", height: "100%" }}></Card>;
 };
 
 export default Picture;

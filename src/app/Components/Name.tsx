@@ -1,19 +1,21 @@
 import React from "react";
-import { Box, Typography } from "@mui/material";
+import { Box, Card, CardContent, Typography } from "@mui/material";
+import theme from "../store/theme";
 const Name = () => {
   return (
-    <Box
-      sx={{
-        width: 300,
-        height: 150,
-        backgroundColor: "primary.dark",
-      }}>
-        <Typography variant="h4"
-        sx={{paddingX: 4, paddingY: 3}}>Baglyas Gyozo</Typography>
-        <Typography variant="h6"
-        sx={{paddingX: 4, bgcolor: "#cfe8fc", marginRight: 6}}>Front-end Developer</Typography>
-
-      </Box>
+    <Card
+    sx={{ backgroundColor: 'primary.main', height: '100%' }}>
+      
+      <Typography variant="h4" sx={{ paddingX: 2, paddingY: 2 }}>
+        Baglyas Gyozo
+      </Typography>
+      <Typography
+        variant="h6"
+        sx={{ paddingX: 2, bgcolor: "#cfe8fc", marginRight: 6 }}>
+        Front-end Developer
+      </Typography>
+      <br />
+    </Card>
   );
 };
 
