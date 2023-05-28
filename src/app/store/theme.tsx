@@ -1,3 +1,4 @@
+import { colors } from "@mui/material";
 import { createTheme } from "@mui/material/styles";
 
 const theme = createTheme({
@@ -14,6 +15,11 @@ const theme = createTheme({
       default: '#ffffff',
       paper: '#3898f4'
     },
+    text: {
+      primary: colors.blueGrey[900],
+      secondary: colors.blueGrey[700],
+      disabled: colors.blueGrey[300]
+    }
   }
 });
 export default theme;

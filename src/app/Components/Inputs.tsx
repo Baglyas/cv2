@@ -9,7 +9,8 @@ import {
   getExperiences,
   getEducation,
   getContacts,
-  getSkills
+  getSkills,
+  getHobbies,
 } from "../features/userSlice";
 import { current } from "@reduxjs/toolkit";
 
@@ -60,6 +61,17 @@ const Inputs = () => {
 
   //Skills
   const [skills, setSkills] = useState('')
+
+  
+  //Hobbies
+  interface Hobbies {
+    icon: any,
+    hobby: String,
+  }
+  const [hobbies, setHobbies] = useState<Hobbies>({
+    icon: undefined,
+    hobby: '',
+  })
   return (
     <div>
       <Input
@@ -227,6 +239,23 @@ const Inputs = () => {
           setSkills('')
         }}>Submit!</Button>
 
+        <Input 
+        placeholder="Hobbies"
+        value={hobbies.hobby}
+        onChange={(e)=>{setHobbies({
+          ...hobbies, 
+          hobby: e.target.value
+        })}}/>
+        <Input 
+        value={hobbies.icon}
+        onChange={(e)=>setHobbies({
+          ...hobbies,
+          icon: e.target.value
+        })}/>
+        {/**Make here some custom made list of icons */}
+        <Button onClick={()=>{
+          dispatch(getHobbies(hobbies))
+        }}>Submit!</Button>
     </div>
   );
 };
