@@ -1,4 +1,4 @@
-import { FormGroup, Input, Button, Typography } from "@mui/material";
+import { FormGroup, Input, Button, Typography, FormControl, InputLabel, Select, MenuItem } from "@mui/material";
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -246,15 +246,34 @@ const Inputs = () => {
           ...hobbies, 
           hobby: e.target.value
         })}}/>
-        <Input 
-        value={hobbies.icon}
-        onChange={(e)=>setHobbies({
-          ...hobbies,
-          icon: e.target.value
-        })}/>
+        <FormControl fullWidth>
+        <InputLabel id="demo-simple-select-label">Age</InputLabel>
+        <Select
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          value={hobbies.icon}
+          label="Age"
+          onChange={(e)=>setHobbies({
+            ...hobbies,
+            icon: e.target.value
+          })}
+        >
+          <MenuItem value={10}>Ten</MenuItem>
+          <MenuItem value={20}>Twenty</MenuItem>
+          <MenuItem value={30}>Thirty</MenuItem>
+        </Select>
+      </FormControl>
+
         {/**Make here some custom made list of icons */}
         <Button onClick={()=>{
-          dispatch(getHobbies(hobbies))
+
+          hobbies.hobby !== ''
+          ? dispatch(getHobbies(hobbies))
+          : alert('Hobbies input is empty!')
+          setHobbies({
+            icon: undefined,
+            hobby: '',
+          })
         }}>Submit!</Button>
     </div>
   );

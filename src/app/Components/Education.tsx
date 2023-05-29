@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 const Education = () => {
   const user: User = useSelector((state: { user: User }) => state.user);
   return (
-    <Card sx={{ height: "100%" }}>
+    <Card sx={{ height: "100%", backgroundColor: '#FFFFFF' }}>
       <CardContent>
         <Typography variant="h5">Education</Typography>
         <Divider></Divider>
