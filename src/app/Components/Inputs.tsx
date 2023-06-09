@@ -32,11 +32,13 @@ const Inputs = () => {
   const Name = () => {
     return (
       <motion.div layoutId="Name">
-        <motion.input
+<motion.div>
+        <Input
           type="text"
           value={user.name}
           onChange={(e) => dispatch(getName(e.target.value))}
         />
+</motion.div>
         Name is: {user.name}
         <motion.input
           type="number"
