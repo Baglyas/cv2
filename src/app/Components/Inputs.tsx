@@ -1,4 +1,13 @@
-import { FormGroup, Input, Button, Typography, FormControl, InputLabel, Select, MenuItem } from "@mui/material";
+import {
+  FormGroup,
+  Input,
+  Button,
+  Typography,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+} from "@mui/material";
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -12,11 +21,32 @@ import {
   getSkills,
   getHobbies,
 } from "../features/userSlice";
-import { current } from "@reduxjs/toolkit";
+import { AnimatePresence, motion } from "framer-motion";
 
 const Inputs = () => {
   const user: User = useSelector((state: { user: User }) => state.user);
   const dispatch = useDispatch();
+
+  const Name = () => {
+    return (
+      <>
+        <motion.div layoutId="Name">
+          <motion.input
+            type="text"
+            value={user.name}
+            onChange={(e) => dispatch(getName(e.target.value))}
+          />
+          Name is: {user.name}
+          <motion.input
+            type="number"
+            onChange={(e) => dispatch(getAge(e.target.value))}
+          />
+          Age is: {user.age.toString()}
+          <motion.button onClick={() => setSelectedId(null)}>X</motion.button>
+        </motion.div>
+      </>
+    );
+  };
 
   // Experiences
   interface Experiences {
@@ -30,6 +60,10 @@ const Inputs = () => {
     description: "",
   });
 
+  const Experiences = () => {
+    return <>exp</>;
+  };
+
   // Education
   interface Education {
     start?: Number;
@@ -40,48 +74,84 @@ const Inputs = () => {
   const [educations, setEducations] = useState<Education>({
     start: undefined,
     finish: undefined,
-    schoolName: '',
-    major: ''
+    schoolName: "",
+    major: "",
   });
-
+  const Education = () => {
+    return <>edu</>;
+  };
   //Contacts
-  
+
   interface Contacts {
-    phone?: Number,
-    address?: String,
-    email?: String,
-    website?: String,
+    phone?: Number;
+    address?: String;
+    email?: String;
+    website?: String;
   }
   const [contacts, setContacts] = useState<Contacts>({
-    email: '',
+    email: "",
     phone: undefined,
-    address: '',
-    website: '',
-  })
-
+    address: "",
+    website: "",
+  });
+  const Contacts = () => {
+    return <>contact</>;
+  };
   //Skills
-  const [skills, setSkills] = useState('')
-
-  
+  const [skills, setSkills] = useState("");
+  const Skills = () => {
+    return <>skill</>;
+  };
   //Hobbies
   interface Hobbies {
-    icon: any,
-    hobby: String,
+    icon: any;
+    hobby: String;
   }
   const [hobbies, setHobbies] = useState<Hobbies>({
     icon: undefined,
-    hobby: '',
-  })
+    hobby: "",
+  });
+  const Hobbies = () => {
+    return <></>;
+  };
+  const categories = [
+    "Name",
+    "Experiences",
+    "Education",
+    "Contacts",
+    "Skills",
+    "Hobbies",
+  ];
+  const components = [Name, Experiences, Education, Contacts, Skills, Hobbies];
+
+  const [selectedId, setSelectedId] = useState<any>(null);
   return (
     <div>
-      <Input
-        type="text"
-        value={user.name}
-        onChange={(e) => dispatch(getName(e.target.value))}
-      />
-      Name is: {user.name}
-      <Input type="number" onChange={(e) => dispatch(getAge(e.target.value))} />
-      Age is: {user.age.toString()}
+      <div style={{}}>
+        {categories.map((categ) => {
+          return (
+            <motion.div
+              key={categ}
+              layoutId={categ}
+              onClick={() => setSelectedId(categ)}>
+              <Button>{categ}</Button>
+            </motion.div>
+          );
+        })}
+      </div>
+      {components.map((Comp, index) => {
+        if (selectedId === categories[index]) {
+          return (
+            <AnimatePresence key={index}>
+              <Comp />
+              <motion.button onClick={() => setSelectedId(null)}>
+                X
+              </motion.button>
+            </AnimatePresence>
+          );
+        }
+        return null;
+      })}
 
       {/* Experiences */}
 
@@ -121,7 +191,7 @@ const Inputs = () => {
           }}
         />
         <Button
-        variant="contained"
+          variant="contained"
           onClick={(e) => {
             dispatch(getExperiences(experiences));
             //default values
@@ -131,150 +201,174 @@ const Inputs = () => {
         </Button>
       </FormGroup>
 
-            {/* Education */}
+      {/* Education */}
 
-        <FormGroup>
-          <Input
+      <FormGroup>
+        <Input
           type="text"
           placeholder="School name:"
           value={educations.schoolName}
-          onChange={(e)=>{
-            setEducations((current)=> ({
+          onChange={(e) => {
+            setEducations((current) => ({
               ...current,
-              schoolName: String(e.target.value)
-            }))
-          }}/>
-          <Input
+              schoolName: String(e.target.value),
+            }));
+          }}
+        />
+        <Input
           placeholder="Starting year"
           value={educations.start}
           type="number"
-          onChange={(e)=>{
-            setEducations((current)=>({
+          onChange={(e) => {
+            setEducations((current) => ({
               ...current,
-              start: Number(e.target.value)
-            }))
-          }}/>
-          <Input
+              start: Number(e.target.value),
+            }));
+          }}
+        />
+        <Input
           placeholder="Graduation year"
           type="number"
           value={educations.finish}
-          onChange={(e)=>{
-            setEducations((current)=>({
-              ...current, 
-              finish: Number(e.target.value)
-            })
-            )
-          }}/>
-          <Input
+          onChange={(e) => {
+            setEducations((current) => ({
+              ...current,
+              finish: Number(e.target.value),
+            }));
+          }}
+        />
+        <Input
           placeholder="Major (optional)"
           type="text"
           value={educations.major}
-          onChange={(e)=>{
-            setEducations((current)=>({
+          onChange={(e) => {
+            setEducations((current) => ({
               ...current,
-              major: String(e.target.value)
-            }))
-          }}/>
-          <Button onClick={(e)=>{
+              major: String(e.target.value),
+            }));
+          }}
+        />
+        <Button
+          onClick={(e) => {
             dispatch(getEducation(educations));
             //Reset educations
             setEducations({
               start: undefined,
               finish: undefined,
-              schoolName: '',
-              major: ''
-            })
-          }}>Submit!</Button>
-        </FormGroup>
-        <FormGroup>
-          <Input
+              schoolName: "",
+              major: "",
+            });
+          }}>
+          Submit!
+        </Button>
+      </FormGroup>
+      <FormGroup>
+        <Input
           placeholder="Email address"
           value={contacts.email}
           type="text"
-          onChange={(e)=>{
-            setContacts((current)=>({
+          onChange={(e) => {
+            setContacts((current) => ({
               ...current,
               email: e.target.value,
-            }))
-          }}/>
-          <Input
+            }));
+          }}
+        />
+        <Input
           placeholder="Address"
           value={contacts.address}
           type="text"
-          onChange={(e)=>{
-            setContacts((current)=>({
+          onChange={(e) => {
+            setContacts((current) => ({
               ...current,
               address: e.target.value,
-            }))
-          }}/>
-          <Input
+            }));
+          }}
+        />
+        <Input
           placeholder="Phone number"
           value={contacts.phone}
           type="num"
-          onChange={(e)=>{
-            setContacts((current)=>({
+          onChange={(e) => {
+            setContacts((current) => ({
               ...current,
               phone: Number(e.target.value),
-            }))
-          }}/>
-          <Input
+            }));
+          }}
+        />
+        <Input
           placeholder="Website"
           value={contacts.website}
           type="text"
-          onChange={(e)=>{
-            setContacts((current)=>({
+          onChange={(e) => {
+            setContacts((current) => ({
               ...current,
               website: String(e.target.value),
-            }))
-          }}/>
-          <Button onClick={()=>{
-            dispatch(getContacts(contacts))
-          }}>Submit!</Button>
-        </FormGroup>
-        <Input placeholder="Skills"
+            }));
+          }}
+        />
+        <Button
+          onClick={() => {
+            dispatch(getContacts(contacts));
+          }}>
+          Submit!
+        </Button>
+      </FormGroup>
+      <Input
+        placeholder="Skills"
         value={skills}
-        onChange={(e)=>setSkills(e.target.value)}/>
-        <Button onClick={()=>{
+        onChange={(e) => setSkills(e.target.value)}
+      />
+      <Button
+        onClick={() => {
           dispatch(getSkills(skills));
-          setSkills('')
-        }}>Submit!</Button>
+          setSkills("");
+        }}>
+        Submit!
+      </Button>
 
-        <Input 
+      <Input
         placeholder="Hobbies"
         value={hobbies.hobby}
-        onChange={(e)=>{setHobbies({
-          ...hobbies, 
-          hobby: e.target.value
-        })}}/>
-        <FormControl fullWidth>
+        onChange={(e) => {
+          setHobbies({
+            ...hobbies,
+            hobby: e.target.value,
+          });
+        }}
+      />
+      <FormControl fullWidth>
         <InputLabel id="demo-simple-select-label">Age</InputLabel>
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
           value={hobbies.icon}
           label="Age"
-          onChange={(e)=>setHobbies({
-            ...hobbies,
-            icon: e.target.value
-          })}
-        >
+          onChange={(e) =>
+            setHobbies({
+              ...hobbies,
+              icon: e.target.value,
+            })
+          }>
           <MenuItem value={10}>Ten</MenuItem>
           <MenuItem value={20}>Twenty</MenuItem>
           <MenuItem value={30}>Thirty</MenuItem>
         </Select>
       </FormControl>
 
-        {/**Make here some custom made list of icons */}
-        <Button onClick={()=>{
-
-          hobbies.hobby !== ''
-          ? dispatch(getHobbies(hobbies))
-          : alert('Hobbies input is empty!')
+      {/**Make here some custom made list of icons */}
+      <Button
+        onClick={() => {
+          hobbies.hobby !== ""
+            ? dispatch(getHobbies(hobbies))
+            : alert("Hobbies input is empty!");
           setHobbies({
             icon: undefined,
-            hobby: '',
-          })
-        }}>Submit!</Button>
+            hobby: "",
+          });
+        }}>
+        Submit!
+      </Button>
     </div>
   );
 };
